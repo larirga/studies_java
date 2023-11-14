@@ -11,8 +11,9 @@ import org.springframework.stereotype.Service;
 public class GameService {
   @Autowired
   private GameRepository gameRepository;
-  public List<Game> findAll() {
+  public List<GameMinDTO> findAll() {
     List<Game> result = gameRepository.findAll();
-    return result;
+    List<GameMinDTO> dto = result.stream().map(x -> new GameMinDTO(x)).toList();
+    return dto;
   }
 }
